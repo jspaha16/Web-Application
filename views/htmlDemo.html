@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WEB700</title>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/theme.css" />
+  </head>
+
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-light sticky"
+      id="navbar"
+    >
+      <a class="navbar-brand" href="#">Jorid Spaha</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/htmlDemo">Html Demo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/students/add">Add Students</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/students">Students</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tas">Teaching Assistants</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/courses">Courses</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <main class="col-md-12">
+          <!-- Start your code here -->
+          <h1>Tables</h1>
+          <br />
+          <table class="table table-bordered">
+            <caption>
+              Logical operators
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Operators</th>
+                <th scope="col">Meaning</th>
+                <th scope="col">Example</th>
+                <th scope="col">Result</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">&&</th>
+                <td>Logical and</td>
+                <td>False&&True</td>
+                <td>False</td>
+              </tr>
+              <tr>
+                <th scope="row">||</th>
+                <td>Logical or</td>
+                <td>False||True</td>
+                <td>True</td>
+              </tr>
+              <tr>
+                <th scope="row">!</th>
+                <td>Logical not</td>
+                <td>!False</td>
+                <td>True</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            This table explains how the "Logical and", "Logical or" and "Logical
+            not" operators work
+          </p>
+          <br />
+          <br />
+          <h5>Multimedia table</h5>
+          <table class="table table-dark table-striped table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">SONG</th>
+                <th scope="col">Photo</th>
+                <th scope="col">Video</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>
+                  <audio controls>
+                    <source
+                      src="https://pat-crawford-sdds.netlify.app/shared/winter-2022/web700/A3/sample-audio.mp3"
+                      type="audio/mp3"
+                    />
+                    Your browser does not support the audio element.
+                  </audio>
+                </td>
+                <td rowspan="2">
+                  <img
+                    src="https://images.pexels.com/photos/7341160/pexels-photo-7341160.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                    alt="Italian Trulli"
+                    style="width: 250px; height: 200px"
+                  />
+                </td>
+                <td>
+                  <video width="320" height="240" controls>
+                    <source
+                      src="https://pat-crawford-sdds.netlify.app/shared/winter-2022/web700/A3/sample-video.mp4"
+                      type="video/mp4"
+                    />
+
+                    Your browser does not support the video tag.
+                  </video>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>
+                  <audio controls>
+                    <source
+                      src="https://pat-crawford-sdds.netlify.app/shared/winter-2022/web700/A3/sample-audio.ogg"
+                      type="audio/mpeg"
+                    />
+                    Your browser does not support the audio element.
+                  </audio>
+                </td>
+                <td rowspan="2">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  <br />
+                  Nulla, atque quas alias assumenda ab hic, <br />
+                  laboriosam maiores, sint cumque necessitatibus <br />
+                  nihil voluptates eligendi amet?
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td colspan="2">Didn't know what ro put here</td>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+          <p>
+            This is a table which has as a content text, audio, a photo and a
+            video
+          </p>
+          <br />
+          <br />
+          <h1>Audio Section</h1>
+
+          <br />
+          <audio controls>
+            <source
+              src="https://pat-crawford-sdds.netlify.app/shared/winter-2022/web700/A3/sample-audio.mp3"
+              type="audio/mpeg"
+            />
+            Your browser does not support the audio element.</audio
+          ><audio controls>
+            <source
+              src="https://pat-crawford-sdds.netlify.app/shared/winter-2022/web700/A3/sample-audio.ogg"
+              type="audio/ogg"
+            />
+
+            Your browser does not support the audio element.
+          </audio>
+          <br />
+          <p>
+            The first audio is in mp3 format and the second one is in ogg format
+          </p>
+
+          <h1>Images Section</h1>
+          <br />
+          <img
+            src="https://images.pexels.com/photos/755385/pexels-photo-755385.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+            alt="Eagle above the clouds"
+            style="width: 250px; height: 200px"
+          />
+          <img
+            src="https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt="Dog"
+            style="width: 250px; height: 300px"
+          />
+          <img
+            src="https://images.pexels.com/photos/1986374/pexels-photo-1986374.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+            alt="Dolphin"
+            style="width: 250px; height: 300px"
+          />
+
+          <br />
+          <br />
+          <p>This are three pictures of an eagle, a dog and a dolphin.</p>
+
+          <br />
+          <br />
+          <h1>Video Section</h1>
+          <center>
+            <video width="320" height="240" controls>
+              <source
+                src="https://pat-crawford-sdds.netlify.app/shared/winter-2022/web700/A3/sample-video.mp4"
+                type="video/mp4"
+              />
+
+              Your browser does not support the video tag.
+            </video>
+          </center>
+          <br />
+          <p>This is a video of earth made from space</p>
+          <!-- End your code here  -->
+        </main>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
