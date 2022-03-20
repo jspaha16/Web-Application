@@ -113,6 +113,24 @@ module.exports.getStudentByNum = (num) => {
   });
 };
 
+module.exports.getCourseById = (id) => {
+  var course = [];
+
+  return new Promise((resolve, reject) => {
+    dataCollection.courses.forEach((item) => {
+      if (item.courseId == id) {
+        course.push(item);
+      }
+    });
+
+    if (course.length == 0) {
+      reject("no results returned");
+    } else {
+      resolve(course);
+    }
+  });
+};
+
 module.exports.addStudent = (studentData) => {
   return new Promise((resolve, reject) => {
     studentData.studentNum = dataCollection.students.length + 1;
@@ -126,5 +144,16 @@ module.exports.addStudent = (studentData) => {
     } else {
       reject("error");
     }
+  });
+};
+
+module.exports.updateStudent = (studentData) => {
+  return new Promise((resolve, reject) => {
+    dataCollection.students.forEach((item) => {
+      if (item.studentNum == studentData.studentNum) {
+        dataCollection.students.splice(item.studentNum - 1, 1, studentData);
+      }
+    });
+    resolve(dataCollection.students);
   });
 };

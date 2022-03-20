@@ -82,7 +82,7 @@ legend {
 tr:nth-child(odd) td {
   background: linear-gradient(
     to bottom,
-    rgb(255, 101, 101),
+    rgb(136, 255, 152),
     rgba(0, 0, 0, 0.233)
   );
 }
