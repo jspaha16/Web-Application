@@ -88,69 +88,72 @@
         </fieldset>
 
         <fieldset>
-          <legend>Academic Information</legend>
+             <legend>Academic Information</legend>
           <div class="row">
             <div class="col-md-4">
-
               <label>College Employment:</label><br />
+               
               <div class="form-check">
+              
                 <input
+                
                   class="form-check-input"
-                  type="checkbox"
                   name="TA"
+                  type="checkbox"
                   id="TA"
-                  checked="{{this.TA}}"
+                  {{#if this.TA}}checked{{/if}} 
+                  
                 />
-                <label class="form-check-label" for="TA">
+               
+               
+                <label class="form-check-label" for="TA" >
                   Teaching Assistant
                 </label>
+               
               </div>
+               
               <br />
-
             </div>
-
             <div class="col-md-4">
               <div class="form-group">
                 <label>Enrollment Status:</label><br />
+                  
                 <label class="checkbox-inline">
-                  <input
-                    type="radio"
-                    id="statusFT"
-                    name="status"
-                    checked=""
-                    value="Full Time"
-                  />
+                 
+                  <input type="radio" name="status" value="Full Time" {{#equal this.status "Full Time"}}checked{{/equal}} />
+                  
                   Full Time
                 </label>
                 <label class="checkbox-inline">
-                  <input
-                    type="radio"
-                    id="statusPT"
-                    name="status"
-                    value="Part Time"
-                  />
+                 
+                  <input type="radio" name="status" value="Part Time" {{#equal this.status "Part Time"}}checked{{/equal}} />
+                  
                   Part Time
+                  
                 </label>
+                
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="course">Enrolled in Course:</label>
+                
                 <select class="form-control" name="course" id="course">
-                  <option value="1">Relational Database Design and
+                  <option value="1" {{#equal this.course "1"}}selected{{/equal}}>Relational Database Design and
                     Implementation</option>
-                  <option value="2" selected="">Java Programming</option>
-                  <option value="3">Introduction to Cloud Computing</option>
-                  <option value="4">Database Administration and Management</option>
-                  <option value="5">Web Programming</option>
-                  <option value="6">Applied Capstone Project</option>
-                  <option value="7">Database Connectivity Using Java</option>
-                  <option value="8">Accessing Big Data</option>
-                  <option value="9">Datawarehousing</option>
-                  <option value="10">Security in Databases and Web Applications</option>
-                  <option value="11">Work Term Preparation (Work-Integrated
+                  <option value="2" {{#equal this.course "2"}}selected{{/equal}}>Java Programming</option>
+                  <option value="3" {{#equal this.course "3"}}selected{{/equal}}>Introduction to Cloud Computing</option>
+                  <option value="4" {{#equal this.course "4"}}selected{{/equal}}>Database Administration and Management</option>
+                  <option value="5" {{#equal this.course "5"}}selected{{/equal}}>Web Programming</option>
+                  <option value="6" {{#equal this.course "6"}}selected{{/equal}}>Applied Capstone Project</option>
+                  <option value="7" {{#equal this.course "7"}}selected{{/equal}}>Database Connectivity Using Java</option>
+                  <option value="8" {{#equal this.course "8"}}selected{{/equal}}>Accessing Big Data</option>
+                  <option value="9" {{#equal this.course "9"}}selected{{/equal}}>Datawarehousing</option>
+                  <option value="10" {{#equal this.course "10"}}selected{{/equal}}>Security in Databases and Web Applications</option>
+                  <option value="11" {{#equal this.course "11"}}selected{{/equal}}>Work Term Preparation (Work-Integrated
                     Learning option only)</option>
                 </select>
+              
               </div>
             </div>
           </div>
