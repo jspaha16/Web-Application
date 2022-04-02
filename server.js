@@ -6,7 +6,7 @@
  *
  * Name: ___Jorid_Spaha_______ Student ID: __114254204____ Date: __19-Mar-2022___
  *
- * Online (Heroku) Link: __https://boiling-stream-18157.herokuapp.com/home______________
+ * Online (Heroku) Link: __https://boiling-stream-18157.herokuapp.com/home
  *
  ********************************************************************************/
 const HTTP_PORT = process.env.PORT || 8080;
