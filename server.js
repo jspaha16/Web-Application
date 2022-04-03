@@ -4,7 +4,7 @@
  * of this assignment has been copied manually or electronically from any other source
  * (including 3rd party web sites) or distributed to other students.
  *
- * Name: ___Jorid_Spaha_______ Student ID: __114254204____ Date: __19-Mar-2022___
+ * Name: ___Jorid_Spaha_______ Student ID: __114254204____ Date: __05-Apr-2022___
  *
  * Online (Heroku) Link: __https://boiling-stream-18157.herokuapp.com/home
  *
@@ -71,124 +71,187 @@ app.use(express.static("public"));
 
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/students/add", (req, res) => {
-  // res.sendFile(path.join(__dirname, "/views/addStudent.html"));
-  res.render("addStudent");
-});
-app.post("/students/add", (req, res) => {
-  req.body.TA = req.body.TA ? true : false; // fix for checkboxes
-  myModule
-    .addStudent(req.body)
-    .then((dataCollection) => {
-      res.redirect("/students");
-    })
-    .catch((err) => {
-      res.render("students", { message: "no results" });
-    });
-});
-app.post("/student/update", (req, res) => {
-  req.body.TA = req.body.TA ? true : false;
-  myModule
-    .updateStudent(req.body)
-    .then((dataCollection) => {
-      console.log(req.body);
-      res.redirect("/students");
-    })
-    .catch((err) => {
-      res.render("students", { message: "no results" });
-    });
-});
 app.get("/students", (req, res) => {
   if (req.query.course) {
     myModule
       .getStudentsByCourse(req.query.course)
       .then((dataCollection) => {
-        res.render("students", { student: dataCollection });
+        res.render("students", { students: dataCollection });
+        console.log(dataCollection);
       })
       .catch((err) => {
-        res.render("students", { message: "no results" });
+        res.json({ message: "no results" });
       });
   } else {
     myModule
       .getAllStudents()
       .then((dataCollection) => {
-        res.render("students", { student: dataCollection });
+        if (dataCollection.length > 0) {
+          res.render("students", { students: dataCollection });
+        } else {
+          res.render("students", { message: "no results" });
+        }
       })
       .catch((err) => {
-        res.render("students", { message: "no results" });
+        res.send({ message: "no results" }); // show the error to the user
       });
   }
-});
-
-app.get("/tas", (req, res) => {
-  myModule
-    .getTAs()
-    .then((dataCollection) => {
-      res.json(dataCollection);
-    })
-    .catch((err) => {
-      res.json("Error, couldn't retrieve any TAs.");
-    });
 });
 
 app.get("/courses", (req, res) => {
   myModule
     .getCourses()
     .then((dataCollection) => {
-      res.render("courses", { courses: dataCollection });
+      if (dataCollection.length > 0) {
+        res.render("courses", { courses: dataCollection });
+      } else {
+        res.render("courses", { message: "no results" });
+      }
     })
     .catch((err) => {
-      res.render("courses", { message: "no results" });
+      res.render("courses", { message: "no results" }); // show the error to the user
+    });
+});
+app.get("/student/:studentNum", (req, res) => {
+  // initialize an empty object to store the values
+  let viewData = {};
+  myModule
+    .getStudentByNum(req.params.studentNum)
+    .then((dataCollection) => {
+      if (dataCollection) {
+        viewData.student = dataCollection; //store student data in the "viewData" object as "student"
+      } else {
+        viewData.student = null; // set student to null if none were returned
+      }
+    })
+    .catch(() => {
+      viewData.student = null; // set student to null if there was an error
+    })
+    .then(myModule.getCourses)
+    .then((dataCollection) => {
+      viewData.courses = dataCollection;
+      for (let i = 0; i < viewData.courses.length; i++) {
+        if (viewData.courses[i].courseId == viewData.student.course) {
+          viewData.courses[i].selected = true;
+        }
+      }
+    })
+    .catch(() => {
+      viewData.courses = []; // set courses to empty if there was an error
+    })
+    .then(() => {
+      if (viewData.student == null) {
+        // if no student - return an error
+        res.status(404).send("Student Not Found");
+      } else {
+        res.render("student", { viewData: viewData }); // render the "student" view
+      }
     });
 });
 
-app.get("/student/:num", (req, res) => {
-  myModule
-    .getStudentByNum(req.params.num)
-    .then((dataCollection) => {
-      res.render("student", { student: dataCollection });
-    })
-    .catch((err) => {
-      res.render("student", { message: "no results" });
-    });
+app.post("/student/update", (req, res) => {
+  req.body.TA = req.body.TA ? true : false;
+  myModule.updateStudent(req.body);
+  res.redirect("/students");
 });
+
 app.get("/course/:id", (req, res) => {
   myModule
     .getCourseById(req.params.id)
     .then((dataCollection) => {
-      res.render("course", { course: dataCollection });
+      if (dataCollection) {
+        res.render("course", { course: dataCollection });
+      } else {
+        res.status(404).send("Course Not Found");
+      }
     })
     .catch((err) => {
-      res.render("course", { message: "no results" });
+      res.json({ message: "no results" });
+    });
+});
+
+app.get("/student/delete/:studentNum", (req, res) => {
+  myModule
+    .deleteStudentByNum(req.params.studentNum)
+    .then(() => {
+      res.redirect("/students");
+    })
+    .catch((err) => {
+      res.status(505).send("Unable to Remove Student ( Student not found )");
+    });
+});
+
+app.get("/course/delete/:id", (req, res) => {
+  myModule
+    .deleteCourseById(req.params.id)
+    .then(() => {
+      res.redirect("/courses");
+    })
+    .catch((err) => {
+      res.status(505).send("Unable to Remove Course ( Course not found )");
     });
 });
 
 app.get("/", (req, res) => {
-  // res.sendFile(path.join(__dirname, "/views/home.html"));
+  //res.sendFile(path.join(__dirname, "/views/home.html"));
   res.render("home");
 });
 
 app.get("/htmlDemo", (req, res) => {
-  // res.sendFile(path.join(__dirname, "/views/htmlDemo.html"));
   res.render("htmlDemo");
 });
 
 app.get("/home", (req, res) => {
-  // res.sendFile(path.join(__dirname, "/views/home.html"));
   res.render("home");
 });
 
+app.get("/students/add", (req, res) => {
+  myModule
+    .getCourses()
+    .then((dataCollection) => {
+      res.render("addStudent", { courses: dataCollection });
+    })
+    .catch((err) => {
+      res.render("addStudent", { courses: [] });
+    });
+});
+app.get("/courses/add", (req, res) => {
+  res.render("addCourse");
+});
+
 app.get("/about", (req, res) => {
-  // res.sendFile(path.join(__dirname, "/views/about.html"));
+  //res.sendFile(path.join(__dirname, "/views/about.html"));
   res.render("about");
 });
-
-app.use((req, res, next) => {
-  res.status(404).render("wrongAddress"); // .sendFile(), .json(), etc or .end() (sends nothing back)
+app.post("/courses/add", (req, res) => {
+  myModule
+    .addCourses(req.body)
+    .then(() => {
+      res.redirect("/courses");
+    })
+    .catch((err) => {
+      res.json("Error");
+    });
+});
+app.post("/students/add", (req, res) => {
+  req.body.TA = req.body.TA ? true : false;
+  myModule
+    .addStudent(req.body)
+    .then(() => {
+      res.redirect("/students");
+    })
+    .catch((err) => {
+      res.json("Error");
+    });
 });
 
+app.post("/course/update", (req, res) => {
+  myModule.updateCourse(req.body);
+
+  res.redirect("/courses");
+});
 app.use((req, res, next) => {
-  res.status(404).send("404: Route not found"); // .sendFile(), .json(), etc or .end() (sends nothing back)
+  res.status(404).render("wrongAddress"); // .sendFile(), .json(), etc or .end() (sends nothing back)
 });
 
 myModule
