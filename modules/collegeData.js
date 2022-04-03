@@ -252,9 +252,7 @@ module.exports.updateCourse = function (courseData) {
       },
     })
       .then(() => {
-        resolve(
-          "Course whith id: " + courseData.courseId + " has been updated"
-        );
+        resolve("Course with id: " + courseData.courseId + " has been updated");
       })
       .catch((err) => {
         reject("unable to update course");
