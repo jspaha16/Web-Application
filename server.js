@@ -193,7 +193,6 @@ app.get("/course/delete/:id", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  //res.sendFile(path.join(__dirname, "/views/home.html"));
   res.render("home");
 });
 
@@ -220,7 +219,6 @@ app.get("/courses/add", (req, res) => {
 });
 
 app.get("/about", (req, res) => {
-  //res.sendFile(path.join(__dirname, "/views/about.html"));
   res.render("about");
 });
 app.post("/courses/add", (req, res) => {
@@ -251,7 +249,7 @@ app.post("/course/update", (req, res) => {
   res.redirect("/courses");
 });
 app.use((req, res, next) => {
-  res.status(404).render("wrongAddress"); // .sendFile(), .json(), etc or .end() (sends nothing back)
+  res.status(404).render("wrongAddress");
 });
 
 myModule

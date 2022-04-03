@@ -57,12 +57,6 @@ var Course = sequelize.define(
 
 Course.hasMany(Student, { foreignKey: "course" });
 
-//module.exports.dataCollection = null;
-// let studentDataFromFile = [];
-// let courseDataFromFile = [];
-
-// set up sequelize to point to our postgres database
-
 module.exports.initialize = function () {
   return new Promise(function (resolve, reject) {
     sequelize
