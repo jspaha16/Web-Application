@@ -184,8 +184,8 @@ module.exports.addStudent = function (studentData) {
   return new Promise(function (resolve, reject) {
     studentData.TA = studentData.TA ? true : false;
     for (attribute in studentData) {
-      if (attribute) {
-        attribute = null;
+      if (studentData[attribute] === "") {
+        studentData[attribute] = null;
       }
     }
     Student.create(studentData)
@@ -202,8 +202,8 @@ module.exports.updateStudent = function (studentData) {
   return new Promise(function (resolve, reject) {
     studentData.TA = studentData.TA ? true : false;
     for (attribute in studentData) {
-      if (attribute) {
-        attribute = null;
+      if (studentData[attribute] === "") {
+        studentData[attribute] = null;
       }
     }
     Student.update(studentData, {
@@ -225,8 +225,8 @@ module.exports.updateStudent = function (studentData) {
 module.exports.addCourses = function (courseData) {
   return new Promise(function (resolve, reject) {
     for (attribute in courseData) {
-      if (attribute) {
-        attribute = null;
+      if (courseData[attribute] === "") {
+        courseData[attribute] = null;
       }
     }
     Course.create(courseData)
@@ -242,8 +242,8 @@ module.exports.addCourses = function (courseData) {
 module.exports.updateCourse = function (courseData) {
   return new Promise(function (resolve, reject) {
     for (attribute in courseData) {
-      if (attribute) {
-        attribute = null;
+      if (courseData[attribute] === "") {
+        courseData[attribute] = null;
       }
     }
     Course.update(courseData, {
